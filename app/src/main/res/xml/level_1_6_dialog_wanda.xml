@@ -2,18 +2,16 @@
 <dialog>
 
 
-<conversation>
- 	<page
-	  image="@drawable/wanda_happy"
-	  text = "@string/Wanda_1_6_1_1" 
-	  title = "@string/Wanda"
-	/>
+    <conversation>
+        <page
+            image="@drawable/wanda_happy"
+            text="@string/Wanda_1_6_1_1"
+            title="@string/Wanda" />
 
-	<page
-	  image="@drawable/wanda_happy"
-	  text = "@string/Wanda_1_6_1_2" 
-	  title = "@string/Wanda"
-	/>
-</conversation>
+        <page
+            image="@drawable/wanda_happy"
+            text="@string/Wanda_1_6_1_2"
+            title="@string/Wanda" />
+    </conversation>
 
 </dialog>

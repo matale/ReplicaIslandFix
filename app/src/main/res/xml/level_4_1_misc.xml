@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dialog>
 
-<conversation>
+    <conversation>
 
-<page
-  text = "@string/KyleDeadNote" 
-/>
+        <page text="@string/KyleDeadNote" />
 
-</conversation>
+    </conversation>
 
 </dialog>
