@@ -23,19 +23,19 @@ package com.replica.replicaisland;
  */
 public class PhasedObject extends BaseObject {
 
-  public int phase;	// This is public because the phased is accessed
-			// extremely often, so much so that the function
-			// overhead of a getter is non-trivial.
+    public int phase;    // This is public because the phased is accessed
+    // extremely often, so much so that the function
+    // overhead of a getter is non-trivial.
 
-  public PhasedObject() {
-    super();
-  }
+    public PhasedObject() {
+        super();
+    }
 
-  @Override
-  public void reset() {
-  }
+    @Override
+    public void reset() {
+    }
 
-  public void setPhase(int phaseValue) {
-    phase = phaseValue;
-  }
+    public void setPhase(int phaseValue) {
+        phase = phaseValue;
+    }
 }

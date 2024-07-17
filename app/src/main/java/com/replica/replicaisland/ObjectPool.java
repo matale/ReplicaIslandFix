@@ -25,56 +25,61 @@ package com.replica.replicaisland;
  * returned to the pool.
  */
 public abstract class ObjectPool extends BaseObject {
-  private FixedSizeArray<Object> mAvailable;
-  private int mSize;
+    private static final int DEFAULT_SIZE = 32;
+    private FixedSizeArray<Object> mAvailable;
+    private int mSize;
 
-  private static final int DEFAULT_SIZE = 32;
+    public ObjectPool() {
+        super();
+        setSize(DEFAULT_SIZE);
+    }
 
-  public ObjectPool() {
-    super();
-    setSize(DEFAULT_SIZE);
-  }
+    public ObjectPool(int size) {
+        super();
+        setSize(size);
+    }
 
-  public ObjectPool(int size) {
-    super();
-    setSize(size);
-  }
+    @Override
+    public void reset() {
+    }
 
-  @Override
-  public void reset() {
-  }
+    /**
+     * Allocates an object from the pool
+     */
+    protected Object allocate() {
+        Object result = mAvailable.removeLast();
+        assert result != null : "Object pool of type " + this.getClass().getSimpleName()
+                + " exhausted!!";
+        return result;
+    }
 
-  /** Allocates an object from the pool */
-  protected Object allocate() {
-    Object result = mAvailable.removeLast();
-    assert result != null : "Object pool of type " + this.getClass().getSimpleName()
-				+ " exhausted!!";
-    return result;
-  }
+    /**
+     * Returns an object to the pool.
+     */
+    public void release(Object entry) {
+        mAvailable.add(entry);
+    }
 
-  /** Returns an object to the pool. */
-  public void release(Object entry) {
-    mAvailable.add(entry);
-  }
+    /**
+     * Returns the number of pooled elements that have been allocated but not released.
+     */
+    public int getAllocatedCount() {
+        return mAvailable.getCapacity() - mAvailable.getCount();
+    }
 
-  /** Returns the number of pooled elements that have been allocated but not released. */
-  public int getAllocatedCount() {
-    return mAvailable.getCapacity() - mAvailable.getCount();
-  }
+    protected abstract void fill();
 
-  private void setSize(int size) {
-    mSize = size;
-    mAvailable = new FixedSizeArray<Object>(mSize);
-    fill();
-  }
+    protected FixedSizeArray<Object> getAvailable() {
+        return mAvailable;
+    }
 
-  protected abstract void fill();
+    protected int getSize() {
+        return mSize;
+    }
 
-  protected FixedSizeArray<Object> getAvailable() {
-    return mAvailable;
-  }
-
-  protected int getSize() {
-    return mSize;
-  }
+    private void setSize(int size) {
+        mSize = size;
+        mAvailable = new FixedSizeArray<Object>(mSize);
+        fill();
+    }
 }

@@ -21,13 +21,13 @@ import android.view.MotionEvent;
 
 public abstract class TouchFilter extends BaseObject {
 
-  public abstract void updateTouch(MotionEvent event);
+    public abstract void updateTouch(MotionEvent event);
 
-  public boolean supportsMultitouch(Context context) {
-    return false;
-  }
+    public boolean supportsMultitouch(Context context) {
+        return false;
+    }
 
-  @Override
-  public void reset() {
-  }
+    @Override
+    public void reset() {
+    }
 }

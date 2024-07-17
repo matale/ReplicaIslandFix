@@ -21,35 +21,35 @@ package com.replica.replicaisland;
  * object will cause it to be pulled down towards the ground.
  */
 public class GravityComponent extends GameComponent {
-  private Vector2 mGravity;
-  private Vector2 mScaledGravity;
-  private static final Vector2 sDefaultGravity = new Vector2(0.0f, -400.0f);
+    private static final Vector2 sDefaultGravity = new Vector2(0.0f, -400.0f);
+    private final Vector2 mGravity;
+    private final Vector2 mScaledGravity;
 
-  public GravityComponent() {
-    super();
-    mGravity = new Vector2(sDefaultGravity);
-    mScaledGravity = new Vector2();
-    setPhase(ComponentPhases.PHYSICS.ordinal());
-  }
+    public GravityComponent() {
+        super();
+        mGravity = new Vector2(sDefaultGravity);
+        mScaledGravity = new Vector2();
+        setPhase(ComponentPhases.PHYSICS.ordinal());
+    }
 
-  @Override
-  public void reset() {
-    mGravity.set(sDefaultGravity);
-  }
+    @Override
+    public void reset() {
+        mGravity.set(sDefaultGravity);
+    }
 
-  @Override
-  public void update(float timeDelta, BaseObject parent) {
-    mScaledGravity.set(mGravity);
-    mScaledGravity.multiply(timeDelta);
-    ((GameObject) parent).getVelocity().add(mScaledGravity);
-  }
+    @Override
+    public void update(float timeDelta, BaseObject parent) {
+        mScaledGravity.set(mGravity);
+        mScaledGravity.multiply(timeDelta);
+        ((GameObject) parent).getVelocity().add(mScaledGravity);
+    }
 
-  public Vector2 getGravity() {
-    return mGravity;
-  }
+    public Vector2 getGravity() {
+        return mGravity;
+    }
 
-  public void setGravityMultiplier(float multiplier) {
-    mGravity.set(sDefaultGravity);
-    mGravity.multiply(multiplier);
-  }
+    public void setGravityMultiplier(float multiplier) {
+        mGravity.set(sDefaultGravity);
+        mGravity.multiply(multiplier);
+    }
 }

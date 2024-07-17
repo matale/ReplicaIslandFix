@@ -24,28 +24,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CustomToastSystem extends BaseObject {
-  private View mView;
-  private TextView mText;
-  private Toast mToast;
+    private final View mView;
+    private final TextView mText;
+    private final Toast mToast;
 
-  public CustomToastSystem(Context context) {
-    LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    mView = inflater.inflate(R.layout.custom_toast, null);
+    public CustomToastSystem(Context context) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mView = inflater.inflate(R.layout.custom_toast, null);
 
-    mText = (TextView) mView.findViewById(R.id.text);
-    mToast = new Toast(context);
-    mToast.setView(mView);
-  }
+        mText = mView.findViewById(R.id.text);
+        mToast = new Toast(context);
+        mToast.setView(mView);
+    }
 
-  @Override
-  public void reset() {
-    // TODO Auto-generated method stub
-  }
+    @Override
+    public void reset() {
+        // TODO Auto-generated method stub
+    }
 
-  public void toast(String text, int length) {
-    mText.setText(text);
-    mToast.setGravity(Gravity.CENTER, 0, 0);
-    mToast.setDuration(length);
-    mToast.show();
-  }
+    public void toast(String text, int length) {
+        mText.setText(text);
+        mToast.setGravity(Gravity.CENTER, 0, 0);
+        mToast.setDuration(length);
+        mToast.show();
+    }
 }

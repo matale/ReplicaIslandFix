@@ -17,34 +17,34 @@
 package com.replica.replicaisland;
 
 public class FrameRateWatcherComponent extends GameComponent {
-  private RenderComponent mRenderComponent;
-  private DrawableObject mDrawable;
-  private float mMaxFrameTimeMS = 1.0f / 30.0f;
+    private final float mMaxFrameTimeMS = 1.0f / 30.0f;
+    private RenderComponent mRenderComponent;
+    private DrawableObject mDrawable;
 
-  public FrameRateWatcherComponent() {
-    super();
-    setPhase(GameComponent.ComponentPhases.THINK.ordinal());
-  }
-
-  @Override
-  public void reset() {
-    mRenderComponent = null;
-    mDrawable = null;
-  }
-
-  @Override
-  public void update(float timeDelta, BaseObject parent) {   
-    if (mRenderComponent != null && mDrawable != null) {
-      if (timeDelta > mMaxFrameTimeMS) {
-	mRenderComponent.setDrawable(mDrawable);
-      } else {
-	mRenderComponent.setDrawable(null);
-      }
+    public FrameRateWatcherComponent() {
+        super();
+        setPhase(GameComponent.ComponentPhases.THINK.ordinal());
     }
-  }
-    
-  public void setup(RenderComponent render, DrawableObject drawable) {
-    mRenderComponent = render;
-    mDrawable = drawable;
-  }
+
+    @Override
+    public void reset() {
+        mRenderComponent = null;
+        mDrawable = null;
+    }
+
+    @Override
+    public void update(float timeDelta, BaseObject parent) {
+        if (mRenderComponent != null && mDrawable != null) {
+            if (timeDelta > mMaxFrameTimeMS) {
+                mRenderComponent.setDrawable(mDrawable);
+            } else {
+                mRenderComponent.setDrawable(null);
+            }
+        }
+    }
+
+    public void setup(RenderComponent render, DrawableObject drawable) {
+        mRenderComponent = render;
+        mDrawable = drawable;
+    }
 }

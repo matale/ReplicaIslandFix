@@ -15,25 +15,27 @@
  */
 package com.replica.replicaisland;
 
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-
 import android.util.Log;
 
 import junit.framework.Assert;
+
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 /**
  * class for checking if rendering function is alive or not.
  * panic if watch-dog is not reset over certain amount of time
  */
 public class RenderingWatchDog implements Runnable {
-    /** panic if watch-dog is not reset over this amount of time */
+    /**
+     * panic if watch-dog is not reset over this amount of time
+     */
     private static final long DEFAULT_TIMEOUT_IN_MSECS = 10 * 1000;
     private static final String TAG = "RenderingWatchDog";
+    private final long mTimeoutInMilliSecs;
     private Thread mThread;
     private Semaphore mSemaphore;
     private volatile boolean mStopRequested;
-    private final long mTimeoutInMilliSecs;
 
     public RenderingWatchDog() {
         this(DEFAULT_TIMEOUT_IN_MSECS);
@@ -43,7 +45,9 @@ public class RenderingWatchDog implements Runnable {
         mTimeoutInMilliSecs = timeoutInMilliSecs;
     }
 
-    /** start watch-dog */
+    /**
+     * start watch-dog
+     */
     public void start() {
         Log.i(TAG, "start");
         mStopRequested = false;
@@ -52,7 +56,9 @@ public class RenderingWatchDog implements Runnable {
         mThread.start();
     }
 
-    /** stop watch-dog */
+    /**
+     * stop watch-dog
+     */
     public void stop() {
         Log.i(TAG, "stop");
         if (mThread == null) {
@@ -69,7 +75,9 @@ public class RenderingWatchDog implements Runnable {
         mSemaphore = null;
     }
 
-    /** resets watch-dog, thus prevent it from panic */
+    /**
+     * resets watch-dog, thus prevent it from panic
+     */
     public void reset() {
         if (!mStopRequested) { // stop requested, but rendering still on-going
             mSemaphore.release();

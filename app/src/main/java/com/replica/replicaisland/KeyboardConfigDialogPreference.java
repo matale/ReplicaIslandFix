@@ -31,12 +31,12 @@ import android.widget.TextView;
 
 
 public class KeyboardConfigDialogPreference extends DialogPreference implements OnKeyListener {
+    private final String mLeftPrefKey;
+    private final String mRightPrefKey;
+    private final String mJumpPrefKey;
+    private final String mAttackPrefKey;
     private SharedPreferences mSharedPrefs;
     private Context mContext;
-    private String mLeftPrefKey;
-    private String mRightPrefKey;
-    private String mJumpPrefKey;
-    private String mAttackPrefKey;
     private String[] mKeyLabels;
     private int mListeningId = 0;
     private View mLeftBorder;
@@ -84,16 +84,16 @@ public class KeyboardConfigDialogPreference extends DialogPreference implements 
             mJumpKeyCode = mSharedPrefs.getInt(mJumpPrefKey, KeyEvent.KEYCODE_SPACE);
             mAttackKeyCode = mSharedPrefs.getInt(mAttackPrefKey, KeyEvent.KEYCODE_SHIFT_LEFT);
 
-            mLeftText = (TextView) view.findViewById(R.id.key_left);
+            mLeftText = view.findViewById(R.id.key_left);
             mLeftText.setText(getKeyLabel(mLeftKeyCode));
 
-            mRightText = (TextView) view.findViewById(R.id.key_right);
+            mRightText = view.findViewById(R.id.key_right);
             mRightText.setText(getKeyLabel(mRightKeyCode));
 
-            mJumpText = (TextView) view.findViewById(R.id.key_jump);
+            mJumpText = view.findViewById(R.id.key_jump);
             mJumpText.setText(getKeyLabel(mJumpKeyCode));
 
-            mAttackText = (TextView) view.findViewById(R.id.key_attack);
+            mAttackText = view.findViewById(R.id.key_attack);
             mAttackText.setText(getKeyLabel(mAttackKeyCode));
 
             mLeftBorder = view.findViewById(R.id.left_border);
@@ -205,7 +205,7 @@ public class KeyboardConfigDialogPreference extends DialogPreference implements 
     }
 
     private class ConfigClickListener implements View.OnClickListener {
-        private int mId;
+        private final int mId;
 
         public ConfigClickListener(int id) {
             mId = id;
