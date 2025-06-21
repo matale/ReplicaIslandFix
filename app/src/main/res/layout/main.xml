@@ -5,7 +5,7 @@
 
     <view
         android:id="@+id/glsurfaceview"
-        class="com.replica.replicaisland.GLSurfaceView"
+        class="com.replica.replicaisland.misc.GLSurfaceView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 

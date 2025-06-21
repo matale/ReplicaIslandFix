@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,10 +14,9 @@
         android:theme="@style/Theme.ReplicaIsland"
         tools:targetApi="31">
         <activity
-            android:name=".AndouKun"
+            android:name=".activities.MainMenuActivity"
             android:configChanges="keyboardHidden|orientation"
             android:exported="true"
-            android:launchMode="singleTask"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,44 +25,50 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="LevelSelectActivity"
+            android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name=".activities.LevelSelectActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape" />
 
         <activity
-            android:name="ConversationDialogActivity"
+            android:name=".activities.ConversationDialogActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.ConversationDialog" />
 
         <activity
-            android:name="DiaryActivity"
+            android:name=".activities.DiaryActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape" />
 
 
         <activity
-            android:name="SetPreferencesActivity"
+            android:name=".activities.SetPreferencesActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape" />
 
         <activity
-            android:name="AnimationPlayerActivity"
+            android:name=".activities.AnimationPlayerActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape" />
 
         <activity
-            android:name="ExtrasMenuActivity"
+            android:name=".activities.ExtrasMenuActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape" />
 
         <activity
-            android:name="DifficultyMenuActivity"
+            android:name=".activities.DifficultyMenuActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape" />
 
         <activity
-            android:name="GameOverActivity"
+            android:name=".activities.GameOverActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape" />
     </application>
