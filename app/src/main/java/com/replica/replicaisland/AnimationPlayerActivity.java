@@ -17,8 +17,6 @@
 
 package com.replica.replicaisland;
 
-import java.lang.reflect.InvocationTargetException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -32,6 +30,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+
+import java.lang.reflect.InvocationTargetException;
 
 
 public class AnimationPlayerActivity extends Activity {
@@ -55,7 +55,7 @@ public class AnimationPlayerActivity extends Activity {
             setContentView(R.layout.animation_player);
 
             ImageView canvasImage = findViewById(R.id.animation_canvas);
-            canvasImage.setImageResource(R.anim.kyle_fall);
+            canvasImage.setImageResource(R.drawable.kyle_fall);
             mAnimation = (AnimationDrawable) canvasImage.getDrawable();
         } else {
             if (mAnimationType == WANDA_ENDING || mAnimationType == KABOCHA_ENDING) {

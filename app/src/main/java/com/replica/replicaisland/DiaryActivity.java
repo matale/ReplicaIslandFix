@@ -64,7 +64,7 @@ public class DiaryActivity extends Activity {
 
         ImageView okArrow = findViewById(R.id.ok);
         okArrow.setOnClickListener(mKillDiaryListener);
-        okArrow.setBackgroundResource(R.anim.ui_button);
+        okArrow.setBackgroundResource(R.drawable.ui_button);
         AnimationDrawable anim = (AnimationDrawable) okArrow.getBackground();
         anim.start();
 

@@ -16,8 +16,6 @@
 
 package com.replica.replicaisland;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -37,6 +35,8 @@ import android.widget.TextView;
 import com.replica.replicaisland.ConversationUtils.Conversation;
 import com.replica.replicaisland.ConversationUtils.ConversationPage;
 
+import java.util.ArrayList;
+
 public class ConversationDialogActivity extends Activity {
 
     private final static float TEXT_CHARACTER_DELAY = 0.1f;
@@ -54,7 +54,7 @@ public class ConversationDialogActivity extends Activity {
         setContentView(R.layout.conversation_dialog);
 
         mOkArrow = findViewById(R.id.ok);
-        mOkArrow.setBackgroundResource(R.anim.ui_button);
+        mOkArrow.setBackgroundResource(R.drawable.ui_button);
         mOkAnimation = (AnimationDrawable) mOkArrow.getBackground();
         mOkArrow.setVisibility(View.INVISIBLE);
 
