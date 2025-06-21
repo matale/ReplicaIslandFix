@@ -16,11 +16,10 @@
 
 package com.replica.replicaisland.component;
 
-import com.replica.replicaisland.misc.BaseObject;
 import com.replica.replicaisland.drawable.DrawableObject;
+import com.replica.replicaisland.misc.BaseObject;
 
 public class FrameRateWatcherComponent extends GameComponent {
-    private final float mMaxFrameTimeMS = 1.0f / 30.0f;
     private RenderComponent mRenderComponent;
     private DrawableObject mDrawable;
 
@@ -38,6 +37,7 @@ public class FrameRateWatcherComponent extends GameComponent {
     @Override
     public void update(float timeDelta, BaseObject parent) {
         if (mRenderComponent != null && mDrawable != null) {
+            float mMaxFrameTimeMS = 1.0f / 30.0f;
             if (timeDelta > mMaxFrameTimeMS) {
                 mRenderComponent.setDrawable(mDrawable);
             } else {

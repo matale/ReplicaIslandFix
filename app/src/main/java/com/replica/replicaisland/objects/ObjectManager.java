@@ -36,16 +36,16 @@ public class ObjectManager extends BaseObject {
 
     public ObjectManager() {
         super();
-        mObjects = new FixedSizeArray<BaseObject>(DEFAULT_ARRAY_SIZE);
-        mPendingAdditions = new FixedSizeArray<BaseObject>(DEFAULT_ARRAY_SIZE);
-        mPendingRemovals = new FixedSizeArray<BaseObject>(DEFAULT_ARRAY_SIZE);
+        mObjects = new FixedSizeArray<>(DEFAULT_ARRAY_SIZE);
+        mPendingAdditions = new FixedSizeArray<>(DEFAULT_ARRAY_SIZE);
+        mPendingRemovals = new FixedSizeArray<>(DEFAULT_ARRAY_SIZE);
     }
 
     public ObjectManager(int arraySize) {
         super();
-        mObjects = new FixedSizeArray<BaseObject>(arraySize);
-        mPendingAdditions = new FixedSizeArray<BaseObject>(arraySize);
-        mPendingRemovals = new FixedSizeArray<BaseObject>(arraySize);
+        mObjects = new FixedSizeArray<>(arraySize);
+        mPendingAdditions = new FixedSizeArray<>(arraySize);
+        mPendingRemovals = new FixedSizeArray<>(arraySize);
     }
 
     @Override

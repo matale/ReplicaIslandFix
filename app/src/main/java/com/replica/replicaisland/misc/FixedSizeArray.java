@@ -146,9 +146,7 @@ public class FixedSizeArray<T> extends AllocationGuard {
      */
     public void set(int index, T object) {
         assert index < mCount;
-        if (index < mCount) {
-            mContents[index] = object;
-        }
+        mContents[index] = object;
     }
 
     /**
@@ -169,7 +167,7 @@ public class FixedSizeArray<T> extends AllocationGuard {
     public T get(int index) {
         assert index < mCount;
         T result = null;
-        if (index < mCount && index >= 0) {
+        if (index >= 0) {
             result = mContents[index];
         }
         return result;

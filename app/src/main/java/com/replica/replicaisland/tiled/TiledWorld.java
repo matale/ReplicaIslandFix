@@ -37,22 +37,6 @@ public class TiledWorld extends AllocationGuard {
     private int mRowCount;
     private int mColCount;
 
-    public TiledWorld(int cols, int rows) {
-        super();
-        mTilesArray = new int[cols][rows];
-        mRowCount = rows;
-        mColCount = cols;
-
-        for (int x = 0; x < cols; x++)
-            for (int y = 0; y < rows; y++) {
-                mTilesArray[x][y] = -1;
-            }
-
-        mWorkspaceBytes = new byte[4];
-
-        calculateSkips();
-    }
-
     public TiledWorld(InputStream stream) {
         super();
         mWorkspaceBytes = new byte[4];
@@ -75,7 +59,7 @@ public class TiledWorld extends AllocationGuard {
     // Third byte: height of the world in tiles.
     // Subsequent bytes: actual tile data in column-major order.
     // TODO: add a checksum in here somewhere.
-    protected boolean parseInput(InputStream stream) {
+    protected void parseInput(InputStream stream) {
         boolean success = false;
         AssetManager.AssetInputStream byteStream = (AssetManager.AssetInputStream) stream;
         int signature;
@@ -104,7 +88,6 @@ public class TiledWorld extends AllocationGuard {
         } catch (IOException e) {
             //TODO: figure out the best way to deal with this.  Assert?
         }
-        return success;
     }
 
     protected void calculateSkips() {

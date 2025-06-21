@@ -45,7 +45,6 @@ public class AnimationPlayerActivity extends Activity {
     public static final int ROKUDOU_ENDING = 3;
     private final KillActivityHandler mKillActivityHandler = new KillActivityHandler();
     private AnimationDrawable mAnimation;
-    private int mAnimationType;
     private long mAnimationEndTime;
 
     @Override
@@ -53,7 +52,7 @@ public class AnimationPlayerActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         final Intent callingIntent = getIntent();
-        mAnimationType = callingIntent.getIntExtra("animation", KYLE_DEATH);
+        int mAnimationType = callingIntent.getIntExtra("animation", KYLE_DEATH);
 
         if (mAnimationType == KYLE_DEATH) {
             setContentView(R.layout.animation_player);

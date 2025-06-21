@@ -57,12 +57,6 @@ public class ScrollerComponent extends GameComponent {
         setPhase(ComponentPhases.PRE_DRAW.ordinal());
     }
 
-    public ScrollerComponent() {
-        super();
-        reset();
-        setPhase(ComponentPhases.PRE_DRAW.ordinal());
-    }
-
     @Override
     public void reset() {
         mWidth = 0;

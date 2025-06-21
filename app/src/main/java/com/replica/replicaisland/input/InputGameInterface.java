@@ -45,14 +45,10 @@ public class InputGameInterface extends BaseObject {
     private final InputButton mAttackButton = new InputButton();
     private final InputXY mDirectionalPad = new InputXY();
     private final InputXY mTilt = new InputXY();
-    private final float mOrientationDeadZoneMin = ORIENTATION_DEAD_ZONE_MIN;
-    private final float mOrientationDeadZoneMax = ORIENTATION_DEAD_ZONE_MAX;
-    private final float mOrientationDeadZoneScale = ORIENTATION_DEAD_ZONE_SCALE;
     private int mLeftKeyCode = KeyEvent.KEYCODE_DPAD_LEFT;
     private int mRightKeyCode = KeyEvent.KEYCODE_DPAD_RIGHT;
     private int mJumpKeyCode = KeyEvent.KEYCODE_SPACE;
     private int mAttackKeyCode = KeyEvent.KEYCODE_SHIFT_LEFT;
-    private float mOrientationSensitivity = 1.0f;
     private float mOrientationSensitivityFactor = 1.0f;
     private float mMovementSensitivity = 1.0f;
 
@@ -255,7 +251,7 @@ public class InputGameInterface extends BaseObject {
     private float filterOrientationForMovement(float magnitude) {
         float scaledMagnitude = magnitude * mOrientationSensitivityFactor;
 
-        return deadZoneFilter(scaledMagnitude, mOrientationDeadZoneMin, mOrientationDeadZoneMax, mOrientationDeadZoneScale);
+        return deadZoneFilter(scaledMagnitude, ORIENTATION_DEAD_ZONE_MIN, ORIENTATION_DEAD_ZONE_MAX, ORIENTATION_DEAD_ZONE_SCALE);
     }
 
     private float deadZoneFilter(float magnitude, float min, float max, float scale) {
@@ -301,7 +297,6 @@ public class InputGameInterface extends BaseObject {
     }
 
     public void setOrientationMovementSensitivity(float sensitivity) {
-        mOrientationSensitivity = sensitivity;
         mOrientationSensitivityFactor = 2.9f * sensitivity + 0.1f;
     }
 

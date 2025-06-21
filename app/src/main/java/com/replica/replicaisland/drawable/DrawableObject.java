@@ -42,10 +42,6 @@ public abstract class DrawableObject extends AllocationGuard {
         return mPriority;
     }
 
-    public void setPriority(float f) {
-        mPriority = f;
-    }
-
     public ObjectPool getParentPool() {
         return mParentPool;
     }

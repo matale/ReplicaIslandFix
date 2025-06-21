@@ -34,19 +34,6 @@ public class SolidSurfaceComponent extends GameComponent {
     private FixedSizeArray<Vector2> mEndPoints;
     private FixedSizeArray<Vector2> mNormals;
 
-    public SolidSurfaceComponent(int maxSurfaceCount) {
-        super();
-
-        inititalize(maxSurfaceCount);
-
-        mStart = new Vector2();
-        mEnd = new Vector2();
-        mNormal = new Vector2();
-
-        setPhase(ComponentPhases.POST_COLLISION.ordinal());
-        reset();
-    }
-
     public SolidSurfaceComponent() {
         super();
 
@@ -64,12 +51,11 @@ public class SolidSurfaceComponent extends GameComponent {
         mNormals.clear();
     }
 
-    public void inititalize(int maxSurfaceCount) {
-        if (mStartPoints == null
-                || (mStartPoints != null && mStartPoints.getCount() != maxSurfaceCount)) {
-            mStartPoints = new FixedSizeArray<Vector2>(maxSurfaceCount);
-            mEndPoints = new FixedSizeArray<Vector2>(maxSurfaceCount);
-            mNormals = new FixedSizeArray<Vector2>(maxSurfaceCount);
+    public void initialize(int maxSurfaceCount) {
+        if (mStartPoints == null || mStartPoints.getCount() != maxSurfaceCount) {
+            mStartPoints = new FixedSizeArray<>(maxSurfaceCount);
+            mEndPoints = new FixedSizeArray<>(maxSurfaceCount);
+            mNormals = new FixedSizeArray<>(maxSurfaceCount);
         }
 
         mStartPoints.clear();

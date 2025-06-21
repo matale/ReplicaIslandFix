@@ -74,7 +74,7 @@ public class TiledVertexGrid extends BaseObject {
         // Check to see if this entire grid is empty tiles.  If so, we don't need to do anything.
         boolean entirelyEmpty = true;
         for (int tileY = 0; tileY < tilesDown && entirelyEmpty; tileY++) {
-            for (int tileX = 0; tileX < tilesAcross && entirelyEmpty; tileX++) {
+            for (int tileX = 0; tileX < tilesAcross; tileX++) {
                 int tileIndex = mWorld.getTile(startTileX + tileX,
                         (tilesPerWorldColumn - 1 - (startTileY + tileY)));
                 if (tileIndex >= 0) {
@@ -184,10 +184,8 @@ public class TiledVertexGrid extends BaseObject {
                 final int horzTileCount = (int) Math.ceil((float) mWidth / mTileWidth);
                 final int vertTileCount = (int) Math.ceil((float) mHeight / mTileHeight);
                 // draw vertex strips
-                final int startX = leftTile;
-                final int startY = bottomTile;
-                final int endX = startX + horizontalSlop + horzTileCount;
-                final int endY = startY + verticalSlop + vertTileCount;
+                final int endX = leftTile + horizontalSlop + horzTileCount;
+                final int endY = bottomTile + verticalSlop + vertTileCount;
 
                 gl.glPushMatrix();
                 gl.glLoadIdentity();
@@ -196,9 +194,9 @@ public class TiledVertexGrid extends BaseObject {
 
                 final int indexesPerTile = 6;
                 final int indexesPerRow = mTilesPerRow * indexesPerTile;
-                final int startOffset = (startX * indexesPerTile);
-                final int count = (endX - startX) * indexesPerTile;
-                for (int tileY = startY; tileY < endY && tileY < mTilesPerColumn; tileY++) {
+                final int startOffset = (leftTile * indexesPerTile);
+                final int count = (endX - leftTile) * indexesPerTile;
+                for (int tileY = bottomTile; tileY < endY && tileY < mTilesPerColumn; tileY++) {
                     final int row = tileY * indexesPerRow;
                     tileMap.drawStrip(gl, true, row + startOffset, count);
                 }

@@ -68,8 +68,8 @@ public class CollisionSystem extends BaseObject {
         mTileSegmentTester = new TileTestVisitor();
         mSegmentPool = new LineSegmentPool(MAX_TEMPORARY_SEGMENTS);
 
-        mTemporarySegments = new FixedSizeArray<LineSegment>(MAX_TEMPORARY_SEGMENTS);
-        mPendingTemporarySegments = new FixedSizeArray<LineSegment>(MAX_TEMPORARY_SEGMENTS);
+        mTemporarySegments = new FixedSizeArray<>(MAX_TEMPORARY_SEGMENTS);
+        mPendingTemporarySegments = new FixedSizeArray<>(MAX_TEMPORARY_SEGMENTS);
 
         mWorkspaceBytes = new byte[4];
     }

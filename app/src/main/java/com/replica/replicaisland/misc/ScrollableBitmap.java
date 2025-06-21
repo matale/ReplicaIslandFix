@@ -44,15 +44,7 @@ public class ScrollableBitmap extends DrawableBitmap {
         return mScrollOriginX;
     }
 
-    public void setScrollOriginX(float scrollOriginX) {
-        mScrollOriginX = scrollOriginX;
-    }
-
     public float getScrollOriginY() {
         return mScrollOriginY;
-    }
-
-    public void setScrollOriginY(float scrollOriginY) {
-        mScrollOriginY = scrollOriginY;
     }
 }

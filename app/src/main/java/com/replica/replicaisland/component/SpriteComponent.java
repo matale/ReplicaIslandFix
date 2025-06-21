@@ -44,16 +44,6 @@ public class SpriteComponent extends GameComponent {
     private SpriteAnimation mCurrentAnimation;
     private boolean mAnimationsDirty;
 
-    public SpriteComponent(int width, int height) {
-        super();
-        mAnimations = new PhasedObjectManager();
-
-        reset();
-        mWidth = width;
-        mHeight = height;
-        setPhase(ComponentPhases.PRE_DRAW.ordinal());
-    }
-
     public SpriteComponent() {
         super();
         mAnimations = new PhasedObjectManager();
@@ -164,10 +154,9 @@ public class SpriteComponent extends GameComponent {
     }
 
     public final boolean animationFinished() {
-        boolean result = mCurrentAnimation != null
+        return mCurrentAnimation != null
                 && !mCurrentAnimation.getLoop()
                 && mAnimationTime > mCurrentAnimation.getLength();
-        return result;
     }
 
     public final float getWidth() {

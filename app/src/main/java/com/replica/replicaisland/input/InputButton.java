@@ -46,10 +46,6 @@ public class InputButton {
         return mDown && currentTime - mDownTime <= BaseObject.sSystemRegistry.timeSystem.getFrameDelta() * 2.0f;
     }
 
-    public final float getPressedDuration(float currentTime) {
-        return currentTime - mDownTime;
-    }
-
     public final float getLastPressedTime() {
         return mLastPressedTime;
     }

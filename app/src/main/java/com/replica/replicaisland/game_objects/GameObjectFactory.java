@@ -1620,7 +1620,7 @@ public class GameObjectFactory extends BaseObject {
 
             SolidSurfaceComponent solidSurface
                     = (SolidSurfaceComponent) allocateComponent(SolidSurfaceComponent.class);
-            solidSurface.inititalize(4);
+            solidSurface.initialize(4);
             // house shape:
             // / \      1/ \2
             // | |      3| |4
@@ -1799,7 +1799,7 @@ public class GameObjectFactory extends BaseObject {
             GameComponent physics = allocateComponent(SimplePhysicsComponent.class);
 
             SolidSurfaceComponent solidSurface = (SolidSurfaceComponent) allocateComponent(SolidSurfaceComponent.class);
-            solidSurface.inititalize(4);
+            solidSurface.initialize(4);
 
             Vector2 surface1Start = new Vector2(25, 0);
             Vector2 surface1End = new Vector2(25, 64);
@@ -2044,7 +2044,7 @@ public class GameObjectFactory extends BaseObject {
 
             SolidSurfaceComponent solidSurface
                     = (SolidSurfaceComponent) allocateComponent(SolidSurfaceComponent.class);
-            solidSurface.inititalize(5);
+            solidSurface.initialize(5);
             // circle shape:
             //  __        __3
             // /  \      2/ \4
@@ -4505,7 +4505,7 @@ public class GameObjectFactory extends BaseObject {
 
             SolidSurfaceComponent solidSurface
                     = (SolidSurfaceComponent) allocateComponent(SolidSurfaceComponent.class);
-            solidSurface.inititalize(4);
+            solidSurface.initialize(4);
             // box shape:
             // ___       ___1
             // | |      2| |3
@@ -4829,7 +4829,7 @@ public class GameObjectFactory extends BaseObject {
 
             SolidSurfaceComponent solidSurface
                     = (SolidSurfaceComponent) allocateComponent(SolidSurfaceComponent.class);
-            solidSurface.inititalize(3);
+            solidSurface.initialize(3);
       /*
           0:2,0:8,59:-0.99532399996093,0.09659262446878
           0:8,59:61,33:0.44551558813576,0.89527418187282
@@ -5076,7 +5076,7 @@ public class GameObjectFactory extends BaseObject {
 
             SolidSurfaceComponent solidSurface
                     = (SolidSurfaceComponent) allocateComponent(SolidSurfaceComponent.class);
-            solidSurface.inititalize(4);
+            solidSurface.initialize(4);
 
             // box shape:
             // ___       ___2

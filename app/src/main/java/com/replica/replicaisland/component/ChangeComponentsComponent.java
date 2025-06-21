@@ -16,10 +16,10 @@
 
 package com.replica.replicaisland.component;
 
-import com.replica.replicaisland.misc.BaseObject;
-import com.replica.replicaisland.misc.FixedSizeArray;
 import com.replica.replicaisland.game_objects.GameObject;
 import com.replica.replicaisland.game_objects.GameObjectFactory;
+import com.replica.replicaisland.misc.BaseObject;
+import com.replica.replicaisland.misc.FixedSizeArray;
 
 /**
  * A game component that can swap other components in and out of its parent
@@ -40,8 +40,8 @@ public class ChangeComponentsComponent extends GameComponent {
 
     public ChangeComponentsComponent() {
         super();
-        mComponentsToInsert = new FixedSizeArray<GameComponent>(MAX_COMPONENT_SWAPS);
-        mComponentsToRemove = new FixedSizeArray<GameComponent>(MAX_COMPONENT_SWAPS);
+        mComponentsToInsert = new FixedSizeArray<>(MAX_COMPONENT_SWAPS);
+        mComponentsToRemove = new FixedSizeArray<>(MAX_COMPONENT_SWAPS);
         reset();
     }
 

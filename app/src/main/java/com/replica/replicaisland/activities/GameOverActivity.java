@@ -35,38 +35,29 @@ import com.replica.replicaisland.debug.DebugLog;
 import java.lang.reflect.InvocationTargetException;
 
 public class GameOverActivity extends Activity {
-    private final float mPearlPercent = 100.0f;
-    private final float mEnemiesDestroyedPercent = 100.0f;
-    private final float mPlayTime = 0.0f;
-    private final int mEnding = AnimationPlayerActivity.KABOCHA_ENDING;
-    private final View.OnClickListener sOKClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            finish();
-            if (UIConstants.mOverridePendingTransition != null) {
-                try {
-                    UIConstants.mOverridePendingTransition.invoke(GameOverActivity.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
-                } catch (InvocationTargetException ite) {
-                    DebugLog.d("Activity Transition", "Invocation Target Exception");
-                } catch (IllegalAccessException ie) {
-                    DebugLog.d("Activity Transition", "Illegal Access Exception");
-                }
+
+    private final View.OnClickListener sOKClickListener = v -> {
+        finish();
+        if (UIConstants.mOverridePendingTransition != null) {
+            try {
+                UIConstants.mOverridePendingTransition.invoke(GameOverActivity.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
+            } catch (InvocationTargetException ite) {
+                DebugLog.d("Activity Transition", "Invocation Target Exception");
+            } catch (IllegalAccessException ie) {
+                DebugLog.d("Activity Transition", "Illegal Access Exception");
             }
         }
     };
-    private IncrementingTextView mPearlView;
-    private IncrementingTextView mEnemiesDestroyedView;
-    private IncrementingTextView mPlayTimeView;
-    private TextView mEndingView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
 
-        mPearlView = findViewById(R.id.pearl_percent);
-        mEnemiesDestroyedView = findViewById(R.id.enemy_percent);
-        mPlayTimeView = findViewById(R.id.total_play_time);
-        mEndingView = findViewById(R.id.ending);
+        IncrementingTextView mPearlView = findViewById(R.id.pearl_percent);
+        IncrementingTextView mEnemiesDestroyedView = findViewById(R.id.enemy_percent);
+        IncrementingTextView mPlayTimeView = findViewById(R.id.total_play_time);
+        TextView mEndingView = findViewById(R.id.ending);
 
         SharedPreferences prefs = getSharedPreferences(PreferenceConstants.PREFERENCE_NAME, MODE_PRIVATE);
         final float playTime = prefs.getFloat(PreferenceConstants.PREFERENCE_TOTAL_GAME_TIME, 0.0f);
@@ -99,12 +90,11 @@ public class GameOverActivity extends Activity {
         okButton.setOnClickListener(sOKClickListener);
     }
 
-    public static class IncrementingTextView extends TextView {
+    public static class IncrementingTextView extends androidx.appcompat.widget.AppCompatTextView {
         private static final int INCREMENT_DELAY_MS = 2 * 1000;
         private static final int MODE_NONE = 0;
         private static final int MODE_PERCENT = 1;
         private static final int MODE_TIME = 2;
-        private final long mLastTime = 0;
         private float mTargetValue;
         private float mIncrement = 1.0f;
         private float mCurrentValue = 0.0f;
@@ -138,6 +128,7 @@ public class GameOverActivity extends Activity {
         @Override
         public void onDraw(Canvas canvas) {
             final long time = SystemClock.uptimeMillis();
+            long mLastTime = 0;
             final long delta = time - mLastTime;
             if (delta > INCREMENT_DELAY_MS) {
                 if (mCurrentValue < mTargetValue) {

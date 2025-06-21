@@ -42,7 +42,6 @@ public class CameraSystem extends BaseObject {
     private GameObject mTarget;
     private float mShakeTime;
     private float mShakeMagnitude;
-    private float mShakeOffsetY;
     private float mTargetChangedTime;
 
     public CameraSystem() {
@@ -100,7 +99,7 @@ public class CameraSystem extends BaseObject {
     @Override
     public void update(float timeDelta, BaseObject parent) {
 
-        mShakeOffsetY = 0.0f;
+        float mShakeOffsetY = 0.0f;
 
         if (mShakeTime > 0.0f) {
             mShakeTime -= timeDelta;
