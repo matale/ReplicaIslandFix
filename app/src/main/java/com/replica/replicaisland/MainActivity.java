@@ -39,6 +39,20 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import com.replica.replicaisland.activities.AnimationPlayerActivity;
+import com.replica.replicaisland.activities.ConversationDialogActivity;
+import com.replica.replicaisland.activities.DiaryActivity;
+import com.replica.replicaisland.activities.GameOverActivity;
+import com.replica.replicaisland.activities.LevelSelectActivity;
+import com.replica.replicaisland.constants.PreferenceConstants;
+import com.replica.replicaisland.constants.UIConstants;
+import com.replica.replicaisland.debug.DebugLog;
+import com.replica.replicaisland.game_objects.Game;
+import com.replica.replicaisland.game_objects.GameFlowEvent;
+import com.replica.replicaisland.misc.EventReporter;
+import com.replica.replicaisland.misc.GLSurfaceView;
+import com.replica.replicaisland.misc.LevelTree;
+
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -46,7 +60,8 @@ import java.lang.reflect.InvocationTargetException;
  * the game engine, and manages UI events.  Also manages game progression,
  * transitioning to other activites, save game, and input events.
  */
-public class AndouKun extends Activity implements SensorEventListener {
+// Previously AndouKun
+public class MainActivity extends Activity implements SensorEventListener {
     public static final int QUIT_GAME_DIALOG = 0;
     // If the version is a negative number, debug features
     // (logging and a debug menu) are enabled.
@@ -172,7 +187,8 @@ public class AndouKun extends Activity implements SensorEventListener {
             LevelTree.loadAllDialog(this);
         }
 
-        if (getIntent().getBooleanExtra("startAtLevelSelect", false)) {
+        //if (getIntent().getBooleanExtra("startAtLevelSelect", false)) {
+        if (true) {
             Intent i = new Intent(this, LevelSelectActivity.class);
             i.putExtra("unlockAll", true);
             startActivityForResult(i, ACTIVITY_CHANGE_LEVELS);
@@ -533,7 +549,7 @@ public class AndouKun extends Activity implements SensorEventListener {
                         startActivityForResult(i, ACTIVITY_CHANGE_LEVELS);
                         if (UIConstants.mOverridePendingTransition != null) {
                             try {
-                                UIConstants.mOverridePendingTransition.invoke(AndouKun.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
+                                UIConstants.mOverridePendingTransition.invoke(MainActivity.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
                             } catch (InvocationTargetException ite) {
                                 DebugLog.d("Activity Transition", "Invocation Target Exception");
                             } catch (IllegalAccessException ie) {
@@ -572,7 +588,7 @@ public class AndouKun extends Activity implements SensorEventListener {
                     startActivity(i);
                     if (UIConstants.mOverridePendingTransition != null) {
                         try {
-                            UIConstants.mOverridePendingTransition.invoke(AndouKun.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
+                            UIConstants.mOverridePendingTransition.invoke(MainActivity.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
                         } catch (InvocationTargetException ite) {
                             DebugLog.d("Activity Transition", "Invocation Target Exception");
                         } catch (IllegalAccessException ie) {
@@ -590,7 +606,7 @@ public class AndouKun extends Activity implements SensorEventListener {
                 startActivity(i);
                 if (UIConstants.mOverridePendingTransition != null) {
                     try {
-                        UIConstants.mOverridePendingTransition.invoke(AndouKun.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
+                        UIConstants.mOverridePendingTransition.invoke(MainActivity.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
                     } catch (InvocationTargetException ite) {
                         DebugLog.d("Activity Transition", "Invocation Target Exception");
                     } catch (IllegalAccessException ie) {
@@ -620,7 +636,7 @@ public class AndouKun extends Activity implements SensorEventListener {
                 startActivityForResult(i, ACTIVITY_ANIMATION_PLAYER);
                 if (UIConstants.mOverridePendingTransition != null) {
                     try {
-                        UIConstants.mOverridePendingTransition.invoke(AndouKun.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
+                        UIConstants.mOverridePendingTransition.invoke(MainActivity.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
                     } catch (InvocationTargetException ite) {
                         DebugLog.d("Activity Transition", "Invocation Target Exception");
                     } catch (IllegalAccessException ie) {
@@ -709,7 +725,7 @@ public class AndouKun extends Activity implements SensorEventListener {
                             finish();
                             if (UIConstants.mOverridePendingTransition != null) {
                                 try {
-                                    UIConstants.mOverridePendingTransition.invoke(AndouKun.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
+                                    UIConstants.mOverridePendingTransition.invoke(MainActivity.this, R.anim.activity_fade_in, R.anim.activity_fade_out);
                                 } catch (InvocationTargetException ite) {
                                     DebugLog.d("Activity Transition", "Invocation Target Exception");
                                 } catch (IllegalAccessException ie) {
