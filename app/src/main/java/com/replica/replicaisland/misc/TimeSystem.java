@@ -101,10 +101,6 @@ public class TimeSystem extends BaseObject {
         return mGameFrameDelta;
     }
 
-    public float getRealTimeFrameDelta() {
-        return mRealFrameDelta;
-    }
-
     public void freeze(float seconds) {
         mFreezeDelay = seconds;
     }

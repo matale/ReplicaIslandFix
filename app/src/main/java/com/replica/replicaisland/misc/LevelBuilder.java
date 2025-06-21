@@ -92,11 +92,9 @@ public class LevelBuilder extends BaseObject {
                 // The background image is ideally 1.5 times the size of the largest
                 // screen axis (normally width, but just in case, let's calculate it).
                 final int idealSize = (int) Math.max(params.gameWidth * 1.5f, params.gameHeight * 1.5f);
-                int width = idealSize;
-                int height = idealSize;
 
                 ScrollerComponent scroller3 =
-                        new ScrollerComponent(0.0f, 0.0f, width, height,
+                        new ScrollerComponent(0.0f, 0.0f, idealSize, idealSize,
                                 textureLibrary.allocateTexture(backgroundResource));
                 scroller3.setRenderComponent(backgroundRender);
 
@@ -104,8 +102,8 @@ public class LevelBuilder extends BaseObject {
                 // beginning and end of the level. Don't allow speeds > 1.0, though;
                 // that would be faster than the foreground, which is disorienting
                 // and looks like rotation.
-                final float scrollSpeedX = Math.min((float) (width - params.gameWidth) / (levelWidth - params.gameWidth), 1.0f);
-                final float scrollSpeedY = Math.min((float) (height - params.gameHeight) / (levelHeight - params.gameHeight), 1.0f);
+                final float scrollSpeedX = Math.min((float) (idealSize - params.gameWidth) / (levelWidth - params.gameWidth), 1.0f);
+                final float scrollSpeedY = Math.min((float) (idealSize - params.gameHeight) / (levelHeight - params.gameHeight), 1.0f);
 
                 scroller3.setScrollSpeed(scrollSpeedX, scrollSpeedY);
 

@@ -273,10 +273,6 @@ public class Grid {
         }
     }
 
-    public boolean usingHardwareBuffers() {
-        return mUseHardwareBuffers;
-    }
-
     /**
      * When the OpenGL ES device is lost, GL handles become invalidated.
      * In that case, we just want to "forget" the old handles (without

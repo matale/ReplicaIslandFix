@@ -105,7 +105,7 @@ public class MotionBlurComponent extends GameComponent {
         }
     }
 
-    private class BlurRecord {
+    private static class BlurRecord {
         public Vector2 position = new Vector2();
         public Texture texture;
         public int width;

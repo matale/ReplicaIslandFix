@@ -114,7 +114,6 @@ public class GameObjectFactory extends BaseObject {
     private final GameObjectPool mGameObjectPool;
     private final float mTightActivationRadius;
     private final float mNormalActivationRadius;
-    private final float mWideActivationRadius;
     private final float mAlwaysActive;
 
 
@@ -124,7 +123,7 @@ public class GameObjectFactory extends BaseObject {
         mGameObjectPool = new GameObjectPool(MAX_GAME_OBJECTS);
 
         final int objectTypeCount = GameObjectType.OBJECT_COUNT.ordinal();
-        mStaticData = new FixedSizeArray<FixedSizeArray<BaseObject>>(objectTypeCount);
+        mStaticData = new FixedSizeArray<>(objectTypeCount);
 
         for (int x = 0; x < objectTypeCount; x++) {
             mStaticData.add(null);
@@ -136,7 +135,7 @@ public class GameObjectFactory extends BaseObject {
         final float screenSizeRadius = (float) Math.sqrt(halfHeight2 + halfWidth2);
         mTightActivationRadius = screenSizeRadius + 128.0f;
         mNormalActivationRadius = screenSizeRadius * 1.25f;
-        mWideActivationRadius = screenSizeRadius * 2.0f;
+        float mWideActivationRadius = screenSizeRadius * 2.0f;
         mAlwaysActive = -1.0f;
 
         // TODO: I wish there was a way to do this automatically, but the
@@ -197,7 +196,7 @@ public class GameObjectFactory extends BaseObject {
                 new ComponentClass(TheSourceComponent.class, 1),
         };
 
-        mComponentPools = new FixedSizeArray<GameComponentPool>(componentTypes.length, sComponentPoolComparator);
+        mComponentPools = new FixedSizeArray<>(componentTypes.length, sComponentPoolComparator);
         for (int x = 0; x < componentTypes.length; x++) {
             ComponentClass component = componentTypes[x];
             mComponentPools.add(new GameComponentPool(component.type, component.poolSize));
@@ -225,29 +224,23 @@ public class GameObjectFactory extends BaseObject {
         GameComponentPool pool = getComponentPool(componentType);
         assert pool != null;
         GameComponent component = null;
-        if (pool != null) {
-            component = pool.allocate();
-        }
+        component = pool.allocate();
         return component;
     }
 
     public void releaseComponent(GameComponent component) {
         GameComponentPool pool = getComponentPool(component.getClass());
         assert pool != null;
-        if (pool != null) {
-            component.reset();
-            component.shared = false;
-            pool.release(component);
-        }
+        component.reset();
+        component.shared = false;
+        pool.release(component);
     }
 
     protected boolean componentAvailable(Class<?> componentType, int count) {
         boolean canAllocate = false;
         GameComponentPool pool = getComponentPool(componentType);
         assert pool != null;
-        if (pool != null) {
-            canAllocate = pool.getAllocatedCount() + count < pool.getSize();
-        }
+        canAllocate = pool.getAllocatedCount() + count < pool.getSize();
         return canAllocate;
     }
 
@@ -567,15 +560,13 @@ public class GameObjectFactory extends BaseObject {
         FixedSizeArray<BaseObject> staticData = getStaticData(type);
         assert staticData != null;
 
-        if (staticData != null) {
-            final int staticDataCount = staticData.getCount();
-            for (int x = 0; x < staticDataCount; x++) {
-                BaseObject entry = staticData.get(x);
-                if (entry instanceof GameComponent && object != null) {
-                    object.add(entry);
-                } else if (entry instanceof SpriteAnimation && sprite != null) {
-                    sprite.addAnimation((SpriteAnimation) entry);
-                }
+        final int staticDataCount = staticData.getCount();
+        for (int x = 0; x < staticDataCount; x++) {
+            BaseObject entry = staticData.get(x);
+            if (entry instanceof GameComponent && object != null) {
+                object.add(entry);
+            } else if (entry instanceof SpriteAnimation && sprite != null) {
+                sprite.addAnimation((SpriteAnimation) entry);
             }
         }
     }
@@ -634,7 +625,7 @@ public class GameObjectFactory extends BaseObject {
 
         if (staticData == null) {
             final int staticObjectCount = 13;
-            staticData = new FixedSizeArray<BaseObject>(staticObjectCount);
+            staticData = new FixedSizeArray<>(staticObjectCount);
 
             GameComponent gravity = allocateComponent(GravityComponent.class);
             GameComponent movement = allocateComponent(MovementComponent.class);
@@ -646,11 +637,11 @@ public class GameObjectFactory extends BaseObject {
 
             // Animation Data
             FixedSizeArray<CollisionVolume> basicVulnerabilityVolume =
-                    new FixedSizeArray<CollisionVolume>(1);
+                    new FixedSizeArray<>(1);
             basicVulnerabilityVolume.add(new SphereCollisionVolume(16, 32, 32));
 
             FixedSizeArray<CollisionVolume> pressAndCollectVolume =
-                    new FixedSizeArray<CollisionVolume>(2);
+                    new FixedSizeArray<>(2);
             AABoxCollisionVolume collectionVolume = new AABoxCollisionVolume(16, 0, 32, 48);
             collectionVolume.setHitType(HitType.COLLECT);
             pressAndCollectVolume.add(collectionVolume);
@@ -700,7 +691,7 @@ public class GameObjectFactory extends BaseObject {
             boostExtremeAngle.setLoop(true);
 
             FixedSizeArray<CollisionVolume> stompAttackVolume =
-                    new FixedSizeArray<CollisionVolume>(3);
+                    new FixedSizeArray<>(3);
             stompAttackVolume.add(new AABoxCollisionVolume(16, -5.0f, 32, 37, HitType.HIT));
             stompAttackVolume.add(pressCollisionVolume);
             stompAttackVolume.add(collectionVolume);
@@ -900,7 +891,7 @@ public class GameObjectFactory extends BaseObject {
         {
             FixedSizeArray<BaseObject> jetStaticData = getStaticData(GameObjectType.PLAYER_JETS);
             if (jetStaticData == null) {
-                jetStaticData = new FixedSizeArray<BaseObject>(1);
+                jetStaticData = new FixedSizeArray<>(1);
 
                 SpriteAnimation jetAnim = new SpriteAnimation(0, 2);
                 jetAnim.addFrame(
@@ -938,7 +929,7 @@ public class GameObjectFactory extends BaseObject {
             FixedSizeArray<BaseObject> sparksStaticData = getStaticData(GameObjectType.PLAYER_SPARKS);
 
             if (sparksStaticData == null) {
-                sparksStaticData = new FixedSizeArray<BaseObject>(1);
+                sparksStaticData = new FixedSizeArray<>(1);
 
                 SpriteAnimation sparksAnim = new SpriteAnimation(0, 3);
                 sparksAnim.addFrame(
@@ -977,10 +968,10 @@ public class GameObjectFactory extends BaseObject {
         {
             FixedSizeArray<BaseObject> glowStaticData = getStaticData(GameObjectType.PLAYER_GLOW);
             if (glowStaticData == null) {
-                glowStaticData = new FixedSizeArray<BaseObject>(1);
+                glowStaticData = new FixedSizeArray<>(1);
 
                 FixedSizeArray<CollisionVolume> glowAttackVolume =
-                        new FixedSizeArray<CollisionVolume>(1);
+                        new FixedSizeArray<>(1);
                 glowAttackVolume.add(new SphereCollisionVolume(40, 40, 40, HitType.HIT));
 
                 SpriteAnimation glowAnim = new SpriteAnimation(0, 3);
@@ -1044,7 +1035,7 @@ public class GameObjectFactory extends BaseObject {
     private void setupEnemySparks() {
         FixedSizeArray<BaseObject> staticData = getStaticData(GameObjectType.ENEMY_SPARKS);
         if (staticData == null) {
-            staticData = new FixedSizeArray<BaseObject>(1);
+            staticData = new FixedSizeArray<>(1);
             TextureLibrary textureLibrary = sSystemRegistry.shortTermTextureLibrary;
 
             SpriteAnimation sparksAnim = new SpriteAnimation(0, 13);
@@ -1089,7 +1080,7 @@ public class GameObjectFactory extends BaseObject {
         FixedSizeArray<BaseObject> staticData = getStaticData(GameObjectType.BROBOT);
         if (staticData == null) {
             final int staticObjectCount = 5;
-            staticData = new FixedSizeArray<BaseObject>(staticObjectCount);
+            staticData = new FixedSizeArray<>(staticObjectCount);
 
             GameComponent gravity = allocateComponent(GravityComponent.class);
             GameComponent movement = allocateComponent(MovementComponent.class);
@@ -1098,11 +1089,11 @@ public class GameObjectFactory extends BaseObject {
 
             // Animations
             FixedSizeArray<CollisionVolume> basicVulnerabilityVolume =
-                    new FixedSizeArray<CollisionVolume>(1);
+                    new FixedSizeArray<>(1);
             basicVulnerabilityVolume.add(new SphereCollisionVolume(16, 32, 32));
 
             FixedSizeArray<CollisionVolume> basicAttackVolume =
-                    new FixedSizeArray<CollisionVolume>(2);
+                    new FixedSizeArray<>(2);
             basicAttackVolume.add(new SphereCollisionVolume(16, 32, 32, HitType.HIT));
             basicAttackVolume.add(new AABoxCollisionVolume(16, 0, 32, 16, HitType.DEPRESS));
 
@@ -1258,7 +1249,7 @@ public class GameObjectFactory extends BaseObject {
         FixedSizeArray<BaseObject> staticData = getStaticData(GameObjectType.SNAILBOMB);
         if (staticData == null) {
             final int staticObjectCount = 6;
-            staticData = new FixedSizeArray<BaseObject>(staticObjectCount);
+            staticData = new FixedSizeArray<>(staticObjectCount);
 
             GameComponent gravity = allocateComponent(GravityComponent.class);
             GameComponent movement = allocateComponent(MovementComponent.class);
@@ -1266,11 +1257,11 @@ public class GameObjectFactory extends BaseObject {
 
             // Animations
             FixedSizeArray<CollisionVolume> basicVulnerabilityVolume =
-                    new FixedSizeArray<CollisionVolume>(1);
+                    new FixedSizeArray<>(1);
             basicVulnerabilityVolume.add(new AABoxCollisionVolume(12, 5, 42, 27, HitType.HIT));
 
             FixedSizeArray<CollisionVolume> basicAttackVolume =
-                    new FixedSizeArray<CollisionVolume>(1);
+                    new FixedSizeArray<>(1);
             basicAttackVolume.add(new AABoxCollisionVolume(12, 5, 42, 27, HitType.HIT));
 
             SpriteAnimation idle = new SpriteAnimation(EnemyAnimations.IDLE.ordinal(), 1);
@@ -1407,7 +1398,7 @@ public class GameObjectFactory extends BaseObject {
         FixedSizeArray<BaseObject> staticData = getStaticData(GameObjectType.SHADOWSLIME);
         if (staticData == null) {
             final int staticObjectCount = 5;
-            staticData = new FixedSizeArray<BaseObject>(staticObjectCount);
+            staticData = new FixedSizeArray<>(staticObjectCount);
 
             PopOutComponent popOut = (PopOutComponent) allocateComponent(PopOutComponent.class);
             // edit: these guys turned out to be really annoying, so I'm changing
@@ -1415,11 +1406,11 @@ public class GameObjectFactory extends BaseObject {
             popOut.setAppearDistance(2000);
             popOut.setHideDistance(4000);
 
-            FixedSizeArray<CollisionVolume> basicVulnerabilityVolume = new FixedSizeArray<CollisionVolume>(1);
+            FixedSizeArray<CollisionVolume> basicVulnerabilityVolume = new FixedSizeArray<>(1);
             basicVulnerabilityVolume.add(new SphereCollisionVolume(16, 32, 32));
             basicVulnerabilityVolume.get(0).setHitType(HitType.HIT);
 
-            FixedSizeArray<CollisionVolume> basicAttackVolume = new FixedSizeArray<CollisionVolume>(1);
+            FixedSizeArray<CollisionVolume> basicAttackVolume = new FixedSizeArray<>(1);
             basicAttackVolume.add(new SphereCollisionVolume(16, 32, 32, HitType.HIT));
 
             SpriteAnimation idle = new SpriteAnimation(EnemyAnimations.IDLE.ordinal(), 2);
@@ -6188,7 +6179,7 @@ public class GameObjectFactory extends BaseObject {
             FixedSizeArray<BaseObject> staticData = getStaticData(GameObjectType.FLASH);
             if (staticData == null) {
                 final int staticObjectCount = 1;
-                staticData = new FixedSizeArray<BaseObject>(staticObjectCount);
+                staticData = new FixedSizeArray<>(staticObjectCount);
 
                 SpriteAnimation back = new SpriteAnimation(0, 3);
                 back.addFrame(new AnimationFrame(
@@ -6581,8 +6572,7 @@ public class GameObjectFactory extends BaseObject {
         public static GameObjectType indexToType(int index) {
             final GameObjectType[] valuesArray = values();
             GameObjectType foundType = INVALID;
-            for (int x = 0; x < valuesArray.length; x++) {
-                GameObjectType type = valuesArray[x];
+            for (GameObjectType type : valuesArray) {
                 if (type.mIndex == index) {
                     foundType = type;
                     break;
@@ -6606,19 +6596,15 @@ public class GameObjectFactory extends BaseObject {
                 result = 1;
             } else if (object1 != null && object2 == null) {
                 result = -1;
-            } else if (object1 != null && object2 != null) {
+            } else if (object1 != null) {
                 result = object1.objectClass.hashCode() - object2.objectClass.hashCode();
             }
             return result;
         }
     }
 
-    public class GameObjectPool extends TObjectPool<GameObject> {
-
-        public GameObjectPool() {
-            super();
-        }
-
+    public static class GameObjectPool extends TObjectPool<GameObject> {
+        
         public GameObjectPool(int size) {
             super(size);
         }

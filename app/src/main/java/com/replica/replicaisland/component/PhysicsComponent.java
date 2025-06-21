@@ -186,8 +186,7 @@ public class PhysicsComponent extends GameComponent {
 
         // make sure the entities' motion requires resolution
         if (dotRelativeAndNormal < 0.0f) {
-            final float bounciness = Math.min(getBounciness() + otherBounciness, 1.0f);
-            final float coefficientOfRestitution = bounciness;  // 0 = perfectly inelastic,
+            final float coefficientOfRestitution = Math.min(getBounciness() + otherBounciness, 1.0f);  // 0 = perfectly inelastic,
             // 1 = perfectly elastic
 
             // calculate an impulse to apply to both entities

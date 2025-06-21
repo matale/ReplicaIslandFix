@@ -454,8 +454,8 @@ public class CollisionSystem extends BaseObject {
             hitTile = executeStraigtRay(startPoint, endPoint, startTileX, startTileY,
                     endTileX, endTileY, deltaX, deltaY, hitPoint, hitNormal, visitor);
         } else {
-            final int xIncrement = deltaX != 0 ? Utils.sign(deltaX) : 0;
-            final int yIncrement = deltaY != 0 ? Utils.sign(deltaY) : 0;
+            final int xIncrement = Utils.sign(deltaX);
+            final int yIncrement = Utils.sign(deltaY);
 
             // Note: I'm deviating from the Bresenham algorithm here by adding one
             // to force the end tile to be visited.
@@ -490,7 +490,7 @@ public class CollisionSystem extends BaseObject {
                     error += deltaY2;
                     currentX += xIncrement;
                 }
-            } else if (verticalDelta >= lateralDelta) {
+            } else {
                 int error = deltaX2 - verticalDelta;
 
                 for (int i = 0; i < verticalDelta; i++) {
@@ -529,7 +529,7 @@ public class CollisionSystem extends BaseObject {
      * Loads line segments from a binary file and builds the tiled collision
      * database accordingly.
      */
-    public boolean loadCollisionTiles(InputStream stream) {
+    public void loadCollisionTiles(InputStream stream) {
         boolean success = false;
         AssetManager.AssetInputStream byteStream = (AssetManager.AssetInputStream) stream;
         int signature;
@@ -589,7 +589,6 @@ public class CollisionSystem extends BaseObject {
         } catch (IOException e) {
             //TODO: figure out the best way to deal with this.  Assert?
         }
-        return success;
     }
 
 
@@ -849,13 +848,12 @@ public class CollisionSystem extends BaseObject {
 
         public CollisionTile(int maxSegments) {
             super();
-            segments = new FixedSizeArray<LineSegment>(maxSegments);
+            segments = new FixedSizeArray<>(maxSegments);
         }
 
-        public boolean addSegment(LineSegment segment) {
+        public void addSegment(LineSegment segment) {
             boolean success = segments.getCount() < segments.getCapacity();
             segments.add(segment);
-            return success;
         }
     }
 }

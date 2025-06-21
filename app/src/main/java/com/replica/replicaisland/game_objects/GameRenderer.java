@@ -217,16 +217,14 @@ public class GameRenderer implements GLSurfaceView.Renderer {
                 final int count = objects.getCount();
                 final float scaleX = mScaleX;
                 final float scaleY = mScaleY;
-                final float halfWidth = mHalfWidth;
-                final float halfHeight = mHalfHeight;
                 mProfileObjectCount += count;
                 for (int i = 0; i < count; i++) {
                     RenderElement element = (RenderElement) objectArray[i];
                     float x = element.x;
                     float y = element.y;
                     if (element.cameraRelative) {
-                        x = (x - mCameraX) + halfWidth;
-                        y = (y - mCameraY) + halfHeight;
+                        x = (x - mCameraX) + (float) mHalfWidth;
+                        y = (y - mCameraY) + (float) mHalfHeight;
                     }
                     element.mDrawable.draw(x, y, scaleX, scaleY);
                 }

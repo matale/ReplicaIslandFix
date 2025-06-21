@@ -242,7 +242,7 @@ public class AnimationComponent extends GameComponent {
             } else if (currentAction == ActionType.ATTACK) {
                 mSprite.playAnimation(PlayerAnimations.STOMP.ordinal());
                 if (touchingGround && gameTime > mLandThumpDelay) {
-                    if (mLandThump != null && sound != null) {
+                    if (mLandThump != null) {
                         // modulate the sound slightly to avoid sounding too similar
                         sound.play(mLandThump, false, SoundSystem.PRIORITY_HIGH, 1.0f,
                                 (float) (Math.random() * 0.5f) + 0.75f);

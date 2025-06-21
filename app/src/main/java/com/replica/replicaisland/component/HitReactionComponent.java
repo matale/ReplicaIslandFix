@@ -282,10 +282,6 @@ public class HitReactionComponent extends GameComponent {
         mBounceOnHit = bounce;
     }
 
-    public void setBounceMagnitude(float magnitude) {
-        mBounceMagnitude = magnitude;
-    }
-
     public void setInvincibleTime(float time) {
         mInvincibleAfterHitTime = time;
     }
@@ -333,11 +329,6 @@ public class HitReactionComponent extends GameComponent {
     public final void setTakeHitSound(int hitType, SoundSystem.Sound sound) {
         mTakeHitSoundHitType = hitType;
         mTakeHitSound = sound;
-    }
-
-    public final void setDealHitSound(int hitType, SoundSystem.Sound sound) {
-        mDealHitSound = sound;
-        mDealHitSoundHitType = hitType;
     }
 
     public final void setSpawnOnDealHit(int hitType, GameObjectType objectType, boolean alignToVictimX,

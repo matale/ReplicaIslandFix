@@ -122,14 +122,14 @@ import javax.microedition.khronos.opengles.GL10;
  * {@link #queueEvent(Runnable)}. For example:
  * <pre class="prettyprint">
  * class MyGLSurfaceView extends GLSurfaceView {
- *
+ * <p>
  *     private MyRenderer mMyRenderer;
- *
+ * <p>
  *     public void start() {
  *         mMyRenderer = ...;
  *         setRenderer(mMyRenderer);
  *     }
- *
+ * <p>
  *     public boolean onKeyDown(int keyCode, KeyEvent event) {
  *         if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
  *             queueEvent(new Runnable() {

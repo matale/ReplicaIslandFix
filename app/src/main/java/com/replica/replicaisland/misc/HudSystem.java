@@ -25,6 +25,8 @@ import com.replica.replicaisland.game_objects.GameObjectManager;
 import com.replica.replicaisland.systems.LevelSystem;
 import com.replica.replicaisland.systems.RenderSystem;
 
+import java.util.Arrays;
+
 /**
  * A very simple manager for orthographic in-game UI elements.
  * TODO: This should probably manage a number of hud objects in keeping with
@@ -142,9 +144,7 @@ public class HudSystem extends BaseObject {
         mFPSDigits[1] = -1;
         mFPSDigitsChanged = true;
         mShowFPS = false;
-        for (int x = 0; x < mDigitDrawables.length; x++) {
-            mDigitDrawables[x] = null;
-        }
+        Arrays.fill(mDigitDrawables, null);
         mXDrawable = null;
         mFadePendingEventType = GameFlowEvent.EVENT_INVALID;
         mFadePendingEventIndex = 0;
@@ -207,10 +207,6 @@ public class HudSystem extends BaseObject {
         mFadeDuration = duration;
         mFadeIn = in;
         mFading = true;
-    }
-
-    public void clearFade() {
-        mFading = false;
     }
 
     public boolean isFading() {

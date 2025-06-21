@@ -99,33 +99,29 @@ public class GameObject extends PhasedObjectManager {
     public final boolean touchingGround() {
         final TimeSystem time = sSystemRegistry.timeSystem;
         final float gameTime = time.getGameTime();
-        final boolean touching = gameTime > 0.1f &&
+        return gameTime > 0.1f &&
                 Utils.close(mLastTouchedFloorTime, time.getGameTime(), COLLISION_SURFACE_DECAY_TIME);
-        return touching;
     }
 
     public final boolean touchingCeiling() {
         final TimeSystem time = sSystemRegistry.timeSystem;
         final float gameTime = time.getGameTime();
-        final boolean touching = gameTime > 0.1f &&
+        return gameTime > 0.1f &&
                 Utils.close(mLastTouchedCeilingTime, time.getGameTime(), COLLISION_SURFACE_DECAY_TIME);
-        return touching;
     }
 
     public final boolean touchingLeftWall() {
         final TimeSystem time = sSystemRegistry.timeSystem;
         final float gameTime = time.getGameTime();
-        final boolean touching = gameTime > 0.1f &&
+        return gameTime > 0.1f &&
                 Utils.close(mLastTouchedLeftWallTime, time.getGameTime(), COLLISION_SURFACE_DECAY_TIME);
-        return touching;
     }
 
     public final boolean touchingRightWall() {
         final TimeSystem time = sSystemRegistry.timeSystem;
         final float gameTime = time.getGameTime();
-        final boolean touching = gameTime > 0.1f &&
+        return gameTime > 0.1f &&
                 Utils.close(mLastTouchedRightWallTime, time.getGameTime(), COLLISION_SURFACE_DECAY_TIME);
-        return touching;
     }
 
     public final Vector2 getPosition() {
@@ -192,24 +188,12 @@ public class GameObject extends PhasedObjectManager {
         mLastTouchedFloorTime = lastTouchedFloorTime;
     }
 
-    public final float getLastTouchedCeilingTime() {
-        return mLastTouchedCeilingTime;
-    }
-
     public final void setLastTouchedCeilingTime(float lastTouchedCeilingTime) {
         mLastTouchedCeilingTime = lastTouchedCeilingTime;
     }
 
-    public final float getLastTouchedLeftWallTime() {
-        return mLastTouchedLeftWallTime;
-    }
-
     public final void setLastTouchedLeftWallTime(float lastTouchedLeftWallTime) {
         mLastTouchedLeftWallTime = lastTouchedLeftWallTime;
-    }
-
-    public final float getLastTouchedRightWallTime() {
-        return mLastTouchedRightWallTime;
     }
 
     public final void setLastTouchedRightWallTime(float lastTouchedRightWallTime) {

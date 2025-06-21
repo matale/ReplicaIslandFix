@@ -125,8 +125,7 @@ public class Game extends AllocationGuard {
             }
 
             // Short-term textures are cleared between levels.
-            TextureLibrary shortTermTextureLibrary = new TextureLibrary();
-            BaseObject.sSystemRegistry.shortTermTextureLibrary = shortTermTextureLibrary;
+            BaseObject.sSystemRegistry.shortTermTextureLibrary = new TextureLibrary();
 
             // Long-term textures persist between levels.
             TextureLibrary longTermTextureLibrary = new TextureLibrary();
@@ -152,8 +151,7 @@ public class Game extends AllocationGuard {
             gameRoot.add(inputInterface);
             BaseObject.sSystemRegistry.inputGameInterface = inputInterface;
 
-            LevelSystem level = new LevelSystem();
-            BaseObject.sSystemRegistry.levelSystem = level;
+            BaseObject.sSystemRegistry.levelSystem = new LevelSystem();
 
             CollisionSystem collision = new CollisionSystem();
             BaseObject.sSystemRegistry.collisionSystem = collision;
@@ -192,8 +190,7 @@ public class Game extends AllocationGuard {
             gameRoot.add(dynamicCollision);
             BaseObject.sSystemRegistry.gameObjectCollisionSystem = dynamicCollision;
 
-            RenderSystem renderer = new RenderSystem();
-            BaseObject.sSystemRegistry.renderSystem = renderer;
+            BaseObject.sSystemRegistry.renderSystem = new RenderSystem();
             BaseObject.sSystemRegistry.vectorPool = new VectorPool();
             BaseObject.sSystemRegistry.drawableFactory = new DrawableFactory();
 
@@ -431,7 +428,7 @@ public class Game extends AllocationGuard {
         }
     }
 
-    public boolean onTrackballEvent(MotionEvent event) {
+    public void onTrackballEvent(MotionEvent event) {
         if (mRunning) {
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
                 BaseObject.sSystemRegistry.inputSystem.roll(event.getRawX(), event.getRawY());
@@ -441,21 +438,18 @@ public class Game extends AllocationGuard {
                 onKeyUpEvent(KeyEvent.KEYCODE_DPAD_CENTER);
             }
         }
-        return true;
     }
 
-    public boolean onOrientationEvent(float x, float y, float z) {
+    public void onOrientationEvent(float x, float y, float z) {
         if (mRunning) {
             BaseObject.sSystemRegistry.inputSystem.setOrientation(x, y, z);
         }
-        return true;
     }
 
-    public boolean onTouchEvent(MotionEvent event) {
+    public void onTouchEvent(MotionEvent event) {
         if (mRunning) {
             mTouchFilter.updateTouch(event);
         }
-        return true;
     }
 
     public boolean onKeyDownEvent(int keyCode) {

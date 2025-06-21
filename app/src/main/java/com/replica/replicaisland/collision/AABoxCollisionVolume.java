@@ -101,34 +101,6 @@ public class AABoxCollisionVolume extends CollisionVolume {
                                  float left2, float right2, float top2, float bottom2) {
         final boolean horizontalIntersection = left1 < right2 && left2 < right1;
         final boolean verticalIntersection = top1 > bottom2 && top2 > bottom1;
-        final boolean intersecting = horizontalIntersection && verticalIntersection;
-        return intersecting;
-    }
-
-    /**
-     * Increases the size of this volume as necessary to fit the passed volume.
-     */
-    public void growBy(CollisionVolume other) {
-        final float maxX;
-        final float minX;
-
-        final float maxY;
-        final float minY;
-
-        if (mWidthHeight.length2() > 0) {
-            maxX = Math.max(getMaxX(), other.getMaxX());
-            minX = Math.max(getMinX(), other.getMinX());
-            maxY = Math.max(getMaxY(), other.getMaxY());
-            minY = Math.max(getMinY(), other.getMinY());
-        } else {
-            maxX = other.getMaxX();
-            minX = other.getMinX();
-            maxY = other.getMaxY();
-            minY = other.getMinY();
-        }
-        final float horizontalDelta = maxX - minX;
-        final float verticalDelta = maxY - minY;
-        mBottomLeft.set(minX, minY);
-        mWidthHeight.set(horizontalDelta, verticalDelta);
+        return horizontalIntersection && verticalIntersection;
     }
 }

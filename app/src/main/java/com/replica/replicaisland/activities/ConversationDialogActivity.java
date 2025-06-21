@@ -32,10 +32,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.replica.replicaisland.R;
 import com.replica.replicaisland.misc.ConversationUtils.Conversation;
 import com.replica.replicaisland.misc.ConversationUtils.ConversationPage;
 import com.replica.replicaisland.misc.LevelTree;
-import com.replica.replicaisland.R;
 
 import java.util.ArrayList;
 
@@ -212,7 +212,7 @@ public class ConversationDialogActivity extends Activity {
         }
     }
 
-    public static class TypewriterTextView extends TextView {
+    public static class TypewriterTextView extends androidx.appcompat.widget.AppCompatTextView {
         private int mCurrentCharacter;
         private long mLastTime;
         private CharSequence mText;

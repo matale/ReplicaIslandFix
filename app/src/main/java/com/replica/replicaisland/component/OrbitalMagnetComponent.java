@@ -108,7 +108,7 @@ public class OrbitalMagnetComponent extends GameComponent {
             // mVelocity is now the direction to push the player
 
             mVelocity.multiply(mStrength);
-            float weight = 1.0f;
+            float weight;
             if (distanceFromCenter2 > mMagnetRadius * mMagnetRadius) {
                 float distance = (float) Math.sqrt(distanceFromCenter2);
                 weight = (distance - mMagnetRadius) / (mAreaRadius - mMagnetRadius);

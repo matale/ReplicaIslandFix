@@ -94,7 +94,7 @@ public class PhasedObjectManager extends ObjectManager {
                 result = ((PhasedObject) object1).phase - ((PhasedObject) object2).phase;
             } else if (object1 == null && object2 != null) {
                 result = 1;
-            } else if (object2 == null && object1 != null) {
+            } else if (object1 != null) {
                 result = -1;
             }
             return result;
