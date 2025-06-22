@@ -23,6 +23,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -160,8 +161,8 @@ public class MainMenuActivity extends Activity {
         // Keep the volume control type consistent across all activities.
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-        //MediaPlayer mp = MediaPlayer.create(this, R.raw.bwv_115);
-        //mp.start();
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.bwv_115);
+        mp.start();
     }
 
     @Override

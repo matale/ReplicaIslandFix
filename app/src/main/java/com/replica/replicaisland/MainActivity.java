@@ -113,7 +113,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         SharedPreferences prefs = getSharedPreferences(PreferenceConstants.PREFERENCE_NAME, MODE_PRIVATE);
         final boolean debugLogs = prefs.getBoolean(PreferenceConstants.PREFERENCE_ENABLE_DEBUG, false);
 
-        DebugLog.setDebugLogging(VERSION < 0 || debugLogs);
+        DebugLog.setDebugLogging(true);
 
         DebugLog.d("AndouKun", "onCreate");
 
@@ -187,8 +187,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             LevelTree.loadAllDialog(this);
         }
 
-        //if (getIntent().getBooleanExtra("startAtLevelSelect", false)) {
-        if (true) {
+        if (getIntent().getBooleanExtra("startAtLevelSelect", false)) {
             Intent i = new Intent(this, LevelSelectActivity.class);
             i.putExtra("unlockAll", true);
             startActivityForResult(i, ACTIVITY_CHANGE_LEVELS);
@@ -286,7 +285,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         SharedPreferences prefs = getSharedPreferences(PreferenceConstants.PREFERENCE_NAME, MODE_PRIVATE);
         final boolean debugLogs = prefs.getBoolean(PreferenceConstants.PREFERENCE_ENABLE_DEBUG, false);
 
-        DebugLog.setDebugLogging(VERSION < 0 || debugLogs);
+        DebugLog.setDebugLogging(true);
 
         DebugLog.d("AndouKun", "onResume");
         mGLSurfaceView.onResume();

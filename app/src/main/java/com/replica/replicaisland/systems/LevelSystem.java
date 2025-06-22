@@ -127,7 +127,7 @@ public class LevelSystem extends BaseObject {
                 ContextParameters params = sSystemRegistry.contextParameters;
                 int currentPriority = SortConstants.BACKGROUND_START + 1;
                 for (int x = 0; x < layerCount; x++) {
-                    final int type = (byte) byteStream.read();
+                    final int layerType = (byte) byteStream.read();
                     final int tileIndex = (byte) byteStream.read();
                     byteStream.read(mWorkspaceBytes, 0, 4);
                     final float scrollSpeed = Utils.byteArrayToFloat(mWorkspaceBytes);
@@ -135,7 +135,7 @@ public class LevelSystem extends BaseObject {
                     // TODO: use a pool here?  Seems pointless.
                     TiledWorld world = new TiledWorld(byteStream);
 
-                    if (type == 0) { // it's a background layer
+                    if (layerType == 0) { // it's a background layer
                         assert mWidthInTiles != 0;
                         assert mTileWidth != 0;
 
@@ -160,7 +160,7 @@ public class LevelSystem extends BaseObject {
 
                             currentPriority++;
                         }
-                    } else if (type == 1) { // collision
+                    } else if (layerType == 1) { // collision
                         // Collision always defines the world boundaries.
                         mWidthInTiles = world.getWidth();
                         mHeightInTiles = world.getHeight();
@@ -169,10 +169,10 @@ public class LevelSystem extends BaseObject {
                         if (collision != null) {
                             collision.initialize(world, mTileWidth, mTileHeight);
                         }
-                    } else if (type == 2) { // objects
+                    } else if (layerType == 2) { // objects
                         mSpawnLocations = world;
                         spawnObjects();
-                    } else if (type == 3) { // hot spots
+                    } else if (layerType == 3) { // hot spots
                         HotSpotSystem hotSpots = sSystemRegistry.hotSpotSystem;
                         if (hotSpots != null) {
                             hotSpots.setWorld(world);

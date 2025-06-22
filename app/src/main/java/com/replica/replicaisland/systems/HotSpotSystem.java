@@ -86,16 +86,6 @@ public class HotSpotSystem extends BaseObject {
         return yTile;
     }
 
-    public final float getTileCenterWorldPositionX(int tileX) {
-        float worldX = 0.0f;
-        LevelSystem level = sSystemRegistry.levelSystem;
-        if (mWorld != null && level != null) {
-            final float tileWidth = level.getLevelWidth() / mWorld.getWidth();
-            worldX = (tileX * tileWidth) + (tileWidth / 2.0f);
-        }
-        return worldX;
-    }
-
     public class HotSpotType {
         public static final int NONE = -1;
         public static final int GO_RIGHT = 0;
