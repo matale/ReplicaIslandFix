@@ -80,16 +80,6 @@ public class LevelSystem extends BaseObject {
         return mHeightInTiles * mTileHeight;
     }
 
-    public void sendRestartEvent() {
-        mGameFlowEvent.post(GameFlowEvent.EVENT_RESTART_LEVEL, 0,
-                sSystemRegistry.contextParameters.context);
-    }
-
-    public void sendNextLevelEvent() {
-        mGameFlowEvent.post(GameFlowEvent.EVENT_GO_TO_NEXT_LEVEL, 0,
-                sSystemRegistry.contextParameters.context);
-    }
-
     public void sendGameEvent(int type, int index, boolean immediate) {
         if (immediate) {
             mGameFlowEvent.postImmediate(type, index, sSystemRegistry.contextParameters.context);
@@ -105,10 +95,8 @@ public class LevelSystem extends BaseObject {
      * data.
      *
      * @param stream The input stream for the level file resource.
-     * @return
      */
-    public boolean loadLevel(LevelTree.Level level, InputStream stream, ObjectManager root) {
-        boolean success = false;
+    public void loadLevel(LevelTree.Level level, InputStream stream, ObjectManager root) {
         mCurrentLevel = level;
         AssetManager.AssetInputStream byteStream = (AssetManager.AssetInputStream) stream;
         int signature;
@@ -184,7 +172,6 @@ public class LevelSystem extends BaseObject {
         } catch (IOException e) {
             //TODO: figure out the best way to deal with this.  Assert?
         }
-        return success;
     }
 
     public void spawnObjects() {

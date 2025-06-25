@@ -38,3 +38,8 @@ dependencies {
     testImplementation(libs.junit)
     implementation(libs.junit)
 }
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
