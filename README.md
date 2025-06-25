@@ -1,8 +1,8 @@
 [![Watch the video](https://img.youtube.com/vi/Gzvndy9MXUw/0.jpg)](https://www.youtube.com/watch?v=VGzvndy9MXUw)
 
-Fixed Replica Island with a modern Android Studio project setup.
-I have also unlocked the level select in Options.
-This game is available on Amazon App Store (Not by me!) if you just want to install it.
+Fixed Replica Island with a modern Android Studio project setup.  
+I have also unlocked the level select in Options.  
+This game is available on Amazon App Store (Not by me!) if you just want to install it easily.
 
 ORIGINAL README
 Replica Island
