@@ -104,9 +104,7 @@ public class LevelSystem extends BaseObject {
      * layer is used to bootstrap related systems and provide them with layer
      * data.
      *
-     * @param stream     The input stream for the level file resource.
-     * @param tiles      A tile library to use when constructing tiled background layers.
-     * @param background An object to assign background layer rendering components to.
+     * @param stream The input stream for the level file resource.
      * @return
      */
     public boolean loadLevel(LevelTree.Level level, InputStream stream, ObjectManager root) {

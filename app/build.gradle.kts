@@ -4,16 +4,14 @@ plugins {
 
 android {
     namespace = "com.replica.replicaisland"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.replica.replicaisland"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -39,6 +37,4 @@ dependencies {
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
     implementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
 }
