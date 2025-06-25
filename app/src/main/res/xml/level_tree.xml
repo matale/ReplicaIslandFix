@@ -4,7 +4,7 @@
 
     <group>
         <level
-            resource="@raw/level_0_1_sewer_repeat"
+            resource="@raw/level_0_1_sewer"
             time="@string/level_0_1_time"
             title="@string/level_0_1_sewer"
             waitmessage="true">

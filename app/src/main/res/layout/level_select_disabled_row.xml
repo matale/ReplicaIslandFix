@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="70dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="#000000">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_x="0dp"
-        android:layout_y="0dp"
         android:adjustViewBounds="true"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:gravity="center_vertical"
-        android:scaleType="fitXY"
-        android:src="@drawable/ui_rack_red"
-
-        />
+        android:scaleType="fitCenter"
+        android:src="@drawable/ui_rack_red" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="265dp"
         android:layout_height="36dp"
-        android:layout_x="20dp"
-        android:layout_y="5dp"
+        android:layout_x="30dp"
+        android:layout_y="15dp"
         android:gravity="top"
         android:text="@string/level_1_1"
         android:textColor="#066659"
