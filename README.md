@@ -1,10 +1,19 @@
 [![Watch the video](https://img.youtube.com/vi/Gzvndy9MXUw/0.jpg)](https://www.youtube.com/watch?v=VGzvndy9MXUw)
 
+## What?
+
 Fixed Replica Island with a modern Android Studio project setup.  
 I have also unlocked the level select in Options.  
 This game is available on Amazon App Store (Not by me!) if you just want to install it easily.
+You can see the original dev presentation from Google I/O
+2010 [here] (https://www.youtube.com/watch?v=7-62tRHLcHk)
 
-ORIGINAL README
+## Why?
+
+Why not!
+
+## ORIGINAL README
+
 Replica Island
 
 A side scrolling video game for Android.
