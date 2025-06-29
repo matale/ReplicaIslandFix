@@ -27,6 +27,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
 import android.util.DisplayMetrics;
@@ -35,6 +36,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
@@ -118,6 +121,16 @@ public class MainActivity extends Activity implements SensorEventListener {
         DebugLog.d("AndouKun", "onCreate");
 
         setContentView(R.layout.main);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowInsetsController controller = getWindow().getInsetsController();
+            if (controller != null) {
+                controller.hide(WindowInsets.Type.statusBars() | WindowInsets.Type.navigationBars());
+                controller.setSystemBarsBehavior(
+                        WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                );
+            }
+        }
+
         mGLSurfaceView = findViewById(R.id.glsurfaceview);
         mPauseMessage = findViewById(R.id.pausedMessage);
         mWaitMessage = findViewById(R.id.pleaseWaitMessage);

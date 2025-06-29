@@ -28,6 +28,7 @@
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="landscape" />
 
         <activity
